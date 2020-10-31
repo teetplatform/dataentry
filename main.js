@@ -8,6 +8,20 @@ createNewFile = (_this) => {
     }
 }
 
+downloadFile = () => {
+    const fileName = document.getElementById('currentFileName').value;
+    if (fileName) {
+        var myString = localStorage.getItem(fileName);
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(myString));
+        element.setAttribute('download', fileName + '.json');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+}
+
 getLocalStorage = (fileName) => {
     return JSON.parse(localStorage.getItem(fileName));
 }
